@@ -31,9 +31,9 @@ void calculeMedias (float notas[MAX_LINHAS][MAX_COLUNAS], int linhas, int coluna
   PARA cada linha da matriz EXECUTE
     a variável soma inicia com valor 0 (zero)
     PARA cada coluna da matriz EXECUTE
-      soma recebe a soma anterior mais a j-ésima nota da linha
+      soma recebe a soma anterior mais a j-ésima nota da linha com um peso crescente (1, 2, 3, 4)
     FIM-PARA
-    a média do i-ésimo aluno recebe soma dividido pela quantidade de notas
+    a média do i-ésimo aluno recebe soma dividido pela soma dos pesos
   FIM-PARA
   */
 }
@@ -51,20 +51,19 @@ void mostreMedias (float medias[MAX_LINHAS], int linhas) {
 }
 
 /* 
-  maiorMedia (medias, linhas)
-  Mostre a maior média e qual foi o aluno que obteve essa média.
+  mediaTurma (medias, linhas)
+  Retorna a média geral da turma.
 */
-void maiorMedia (float medias[MAX_LINHAS], int linhas) {
-  int   aluno = 0;
-  float maior = medias[0];
+float mediaTurma (float medias[MAX_LINHAS], int linhas) {
+  float soma = 0;
 
-  for (int i = 1; i < linhas; i++) {
-    if (medias[i] > maior) {
-      maior = medias[i];
-      aluno = i;
-    }
-  }
-  cout << "A maior media eh " << maior << " do aluno " << (aluno+1) << endl;
+  /*
+    PARA cada posição de medias EXECUTE
+      soma adiciona a i-ésima nota
+    FIM-PARA
+  */
+
+  return soma / linhas;
 }
 
 int main() {
@@ -77,7 +76,7 @@ int main() {
 
   mostreMedias (medias, MAX_LINHAS);
 
-  maiorMedia (medias, MAX_LINHAS);
+  cout << "Media da turma: " << mediaTurma (medias, MAX_LINHAS) << endl;
 
   return 0;
 }
